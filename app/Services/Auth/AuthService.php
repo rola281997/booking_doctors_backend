@@ -2,10 +2,7 @@
 
 namespace App\Services\Auth;
 
-use App\Models\Admin;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use stdClass;
 class AuthService
 {
 
@@ -13,7 +10,7 @@ class AuthService
 
     }
    
-    public function login(array $request,string $guard,object $typeRepository,string $column): ?object
+    public function login(array $request,object $typeRepository,string $column): ?object
     {
         $user = $typeRepository->findWhere([$column => $request[$column]])->first();
         if($user&&Hash::check($request['password'],$user->password)){
@@ -24,7 +21,7 @@ class AuthService
       
     }
 
-    public function logout(object $request)
+    public function logout(object $request) :?bool
     {
         return $request->user()->currentAccessToken()->delete();
     }

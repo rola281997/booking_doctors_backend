@@ -17,7 +17,7 @@ class AdminAuthController extends BaseController
 {
     use ResponseHelper;
     protected $authService;
-    protected $guard = 'admin';
+    
     public function __construct(AuthService $authService)
     {
         $this->authService = $authService;
@@ -25,7 +25,7 @@ class AdminAuthController extends BaseController
     public function login(AdminLoginRequest $request)
     {
         try {
-            $user = $this->authService->login($request->only('username', 'password'), $this->guard, App::make(AdminRepository::class), 'username');
+            $user = $this->authService->login($request->only('username', 'password'), App::make(AdminRepository::class), 'username');
             return (!$user)
             ? $this->error(Response::HTTP_UNPROCESSABLE_ENTITY, false, 'Wrong username or password', 'Wrong username or password')
             : $this->apiJson(Response::HTTP_OK, true, AdminLoginResource::make($user), 'Success');

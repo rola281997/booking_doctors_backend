@@ -40,6 +40,18 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'admin' => [
+            'driver' => 'sanctum',
+            'provider' => 'admins',
+        ],
+        'doctor' => [
+            'driver' => 'sanctum',
+            'provider' => 'doctors',
+        ],
+        'patient' => [
+            'driver' => 'sanctum',
+            'provider' => 'patients',
+        ],
     ],
 
     /*
@@ -64,6 +76,21 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
+
+        'doctors' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Doctor::class,
+        ],
+
+        'patients' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Patient::class,
+        ],
+    
 
         // 'users' => [
         //     'driver' => 'database',
@@ -93,6 +120,24 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'admins' => [
+            'provider' => 'admins',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'doctors' => [
+            'provider' => 'doctors',
+            'table' => 'password_reset_tokens',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'patients' => [
+            'provider' => 'patients',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,

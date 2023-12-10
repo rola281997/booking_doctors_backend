@@ -3,12 +3,12 @@
 namespace App\Exceptions;
 
 use App\Helpers\ResponseHelper;
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Throwable;
+use Exception;
 use Illuminate\Auth\AuthenticationException;
-use Illuminate\Http\Request;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -29,23 +29,24 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
+        $this->renderable(
+                function (Throwable $exception, $request) {
+                if ($request->expectsJson()) {
+                    if ($exception instanceof ValidationException) {
+                        return $this->error(Response::HTTP_UNPROCESSABLE_ENTITY, false, $this->reFormatValidationErr($exception->validator->errors()), 'Validation Error');
+
+                    } elseif ($exception instanceof AuthenticationException) {
+                        return $this->error(401, false, 'Unauthenticated', 'Unauthenticated');
+
+                    }
+                }
+            }
+        );
         $this->reportable(function (Throwable $e) {
             //
         });
     }
 
-    public function render($request, Throwable $exception)
-    {
-        if ($request->expectsJson()) {
-            if ($exception instanceof ValidationException) {
-                return $this->error(Response::HTTP_UNPROCESSABLE_ENTITY, false, $this->reFormatValidationErr($exception->validator->errors()), 'Validation Error');
-
-            } elseif ($exception instanceof AuthenticationException) {
-                return $this->error(401, false, 'Unauthenticated', 'Unauthenticated');
-
-            }
-        }
-        return parent::render($request, $exception);
-    }
   
+
 }

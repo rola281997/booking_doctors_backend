@@ -1,10 +1,9 @@
 <?php
 namespace App\Enums;
 
-
 enum BookingStatusesEnum:string
 {
-    case PENDINGSTATUS = 'pending';
-    case ACCEPTSTATUS = 'accept';
-    case REJECTSTATUS = 'reject';
+    const  PENDINGSTATUS = 'pending';
+    const ACCEPTSTATUS = 'accept';
+    const REJECTSTATUS = 'reject';
 }

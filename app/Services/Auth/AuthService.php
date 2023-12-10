@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Hash;
 class AuthService
 {
 
-    public function __constract(){
+    public function __construct(){
 
     }
    

@@ -15,5 +15,16 @@ class DoctorRepository extends BaseRepository
     {
         return Doctor::class;
     }
+    public function generateUniqueServerFileName($realFileName)
+    {
+        $fileName = 'DP' . '_' . time() . '_' . uniqid() . '_' . $realFileName;
+        if (count(Doctor::where('photo', $fileName)->get()) > 0) {
+            $this->generateUniqueServerFileName($realFileName);
+        }
+        return $fileName;
+    }
+    public function syncService(object $doctor,array $services):array{
+        return $doctor->services()->sync($services);
+    }
 
 }

@@ -30,15 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('bookings', function (Blueprint $table) {
-            $table->dropForeign('bookings_doctor_id_foreign');
-            $table->dropColumn('doctor_id');
-            $table->dropForeign('bookings_patient_id_foreign');
-            $table->dropColumn('patient_id');
-            $table->dropForeign('bookings_service_id_foreign');
-            $table->dropColumn('service_id');
-        });
-        
         Schema::dropIfExists('bookings');
     }
 };

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('mobile')->unique();
             $table->string('email');
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->text('photo')->nullable();
             $table->rememberToken();
             $table->timestamps();

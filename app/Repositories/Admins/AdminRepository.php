@@ -3,7 +3,6 @@
 namespace App\Repositories\Admins;
 
 use App\Models\Admin;
-use App\Models\Doctor;
 use Prettus\Repository\Eloquent\BaseRepository;
 class AdminRepository extends BaseRepository
 {

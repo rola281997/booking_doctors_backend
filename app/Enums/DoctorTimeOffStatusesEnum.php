@@ -4,7 +4,7 @@ namespace App\Enums;
 
 enum DoctorTimeOffStatusesEnum:string
 {
-    case PENDINGSTATUS = 'pending';
-    case ACCEPTSTATUS = 'accept';
-    case REJECTSTATUS = 'reject';
+    const PENDINGSTATUS = 'pending';
+    const ACCEPTSTATUS = 'accept';
+    const REJECTSTATUS = 'reject';
 }

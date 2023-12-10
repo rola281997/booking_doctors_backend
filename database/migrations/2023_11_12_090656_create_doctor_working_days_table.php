@@ -27,10 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('doctor_working_days', function (Blueprint $table) {
-            $table->dropForeign('doctor_working_days_doctor_id_foreign');
-            $table->dropColumn('doctor_id');
-        });
         Schema::dropIfExists('doctor_working_days');
     }
 };

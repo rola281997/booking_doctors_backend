@@ -14,3 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::group([], base_path('routes/api_routes/admin_routes.php'));
+Route::group(['prefix'=>'admin'], base_path('routes/api_routes/admin_service_routes.php'));
+Route::group(['prefix'=>'admin'], base_path('routes/api_routes/admin_doctor_routes.php'));
+
+
